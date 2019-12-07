@@ -27,13 +27,22 @@ pipeline {
      steps {
        //sh 'mvn -B'
        sh 'mvn --version'
+       if [ $? != 0 ]; then
+	  exit 1
+       fi
+
        sh 'ls -la /apps/'
+
      }
    }
   
    stage('Test4') {
      steps {
        sh "./docker_run.sh"
+       if [ $? != 0 ]; then
+         exit 1
+       fi
+
      }
     }
 	
